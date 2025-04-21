@@ -27,7 +27,7 @@ export const useShowStore = defineStore('showStore', {
         .sort(([genreA], [genreB]) => genreA.localeCompare(genreB))
         .reduce((sortedGrouped: Record<string, Show[]>, [genre, shows]) => {
           sortedGrouped[genre] = shows.sort(
-            (a, b) => b.rating.average - a.rating.average,
+            (a, b) => (b.rating.average || 0) - (a.rating.average || 0),
           );
           return sortedGrouped;
         }, {});
