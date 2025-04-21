@@ -52,7 +52,10 @@ function closeModal() {
         class="search-input"
       />
     </div>
-    <div v-if="Object.keys(filteredShowsByGenre).length === 0" class="no-results">
+    <div
+      v-if="Object.keys(filteredShowsByGenre).length === 0"
+      class="no-results"
+    >
       <p>No results found for "{{ searchQuery }}" ☹️</p>
     </div>
     <div
