@@ -21,4 +21,10 @@ const showStore = useShowStore();
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.show-list {
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+}
+</style>

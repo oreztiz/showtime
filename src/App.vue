@@ -3,7 +3,13 @@ import ShowDashboard from './components/ShowDashboard.vue';
 </script>
 
 <template>
-  <ShowDashboard />
+  <div class="app-container">
+    <ShowDashboard />
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.app-container {
+  text-align: center;
+}
+</style>
