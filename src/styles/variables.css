@@ -1,6 +1,14 @@
 :root {
-  --brand-primary: #2e1a47;
+  --brand-primary: #1e042f;
+  --brand-gradient: linear-gradient(
+    200deg,
+    #fdbf2b,
+    #ff8c00,
+    #ff3c3c,
+    #c800b2,
+    #6a1b9a
+  );
 
-  --font-family: 'Arial', sans-serif;
+  --font-family: 'Poppins', sans-serif;
   --text-color: #fff;
 }
