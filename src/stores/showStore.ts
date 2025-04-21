@@ -13,16 +13,24 @@ export const useShowStore = defineStore('showStore', {
   },
   getters: {
     showsByGenre: (state) => {
-      const grouped: Record<string, Show[]> = {};
-      state.shows.forEach((show) => {
-        show.genres.forEach((genre) => {
-          if (!grouped[genre]) {
-            grouped[genre] = [];
-          }
-          grouped[genre].push(show);
-        });
-      });
-      return grouped;
+      return Object.entries(
+        state.shows.reduce((grouped: Record<string, Show[]>, show) => {
+          show.genres.forEach((genre) => {
+            if (!grouped[genre]) {
+              grouped[genre] = [];
+            }
+            grouped[genre].push(show);
+          });
+          return grouped;
+        }, {}),
+      )
+        .sort(([genreA], [genreB]) => genreA.localeCompare(genreB))
+        .reduce((sortedGrouped: Record<string, Show[]>, [genre, shows]) => {
+          sortedGrouped[genre] = shows.sort(
+            (a, b) => b.rating.average - a.rating.average,
+          );
+          return sortedGrouped;
+        }, {});
     },
     searchShows: (state) => {
       return (query: string): Show[] => {
