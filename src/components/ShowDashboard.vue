@@ -52,7 +52,11 @@ function closeModal() {
         class="search-input"
       />
     </div>
+    <div v-if="Object.keys(filteredShowsByGenre).length === 0" class="no-results">
+      <p>No results found for "{{ searchQuery }}" ☹️</p>
+    </div>
     <div
+      v-else
       v-for="(shows, genre) in filteredShowsByGenre"
       :key="genre"
       class="genre-section"
@@ -191,6 +195,12 @@ function closeModal() {
 }
 .modal-close__text {
   display: none;
+}
+.no-results {
+  text-align: center;
+  margin: 16px 0;
+  font-size: 18px;
+  color: #666;
 }
 @media (min-width: 480px) {
   .show-list {
