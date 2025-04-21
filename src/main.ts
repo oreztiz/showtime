@@ -1,5 +1,15 @@
 import { createApp } from 'vue';
+import { createPinia } from 'pinia';
 import './style.css';
 import App from './App.vue';
+import { useShowStore } from './stores/showStore';
 
-createApp(App).mount('#app');
+const app = createApp(App);
+const pinia = createPinia();
+
+app.use(pinia);
+
+const showStore = useShowStore(pinia);
+showStore.loadShows();
+
+app.mount('#app');
