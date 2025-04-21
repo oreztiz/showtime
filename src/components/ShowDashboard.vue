@@ -10,12 +10,10 @@ const showStore = useShowStore();
     <div v-for="(shows, genre) in showStore.showsByGenre" :key="genre">
       <h2>{{ genre }}</h2>
       <div class="show-list">
-        <div v-for="show in shows" :key="show.id">
-          <router-link :to="`/show/${show.id}`">
-            <h3>{{ show.name }}</h3>
-            <img :src="show.image?.medium" :alt="`Image of ${show.name}`" />
-          </router-link>
-        </div>
+        <router-link v-for="show in shows" :key="show.id" :to="`/show/${show.id}`" class="show-card">
+          <h3>{{ show.name }}</h3>
+          <img :src="show.image.medium" :alt="`Image of ${show.name}`" class="show-card__image" />
+        </router-link>
       </div>
     </div>
   </div>
@@ -25,6 +23,25 @@ const showStore = useShowStore();
 .show-list {
   display: flex;
   flex-direction: row;
-  overflow-x: scroll;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+.show-card {
+  display: block;
+  scroll-snap-align: center;
+}
+.show-card__image {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+}
+@media (min-width: 480px) {
+  .show-card {
+    scroll-snap-align: start;
+  }
+  .show-card__image {
+    width: 320px;
+    height: 480px;
+  }
 }
 </style>
