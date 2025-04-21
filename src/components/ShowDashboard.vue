@@ -1,11 +1,35 @@
 <script setup lang="ts">
+import { ref, computed } from 'vue';
 import { useShowStore } from '../stores/showStore';
 import { useRoute, useRouter } from 'vue-router';
 import ShowDetails from './ShowDetails.vue';
+import type { Show } from '../types/tvmaze';
 
 const showStore = useShowStore();
 const route = useRoute();
 const router = useRouter();
+
+const searchQuery = ref('');
+
+const filteredShowsByGenre = computed(() => {
+  if (!searchQuery.value.trim()) {
+    return showStore.showsByGenre;
+  }
+
+  const query = searchQuery.value.toLowerCase();
+  const filtered: Record<string, Show[]> = {};
+
+  for (const [genre, shows] of Object.entries(showStore.showsByGenre)) {
+    const matchingShows = shows.filter((show) =>
+      show.name.toLowerCase().includes(query),
+    );
+    if (matchingShows.length) {
+      filtered[genre] = matchingShows;
+    }
+  }
+
+  return filtered;
+});
 
 function handleImageLoad(event: Event) {
   const target = event.target as HTMLImageElement;
@@ -20,8 +44,16 @@ function closeModal() {
 <template>
   <div>
     <img src="../assets/logo.png" alt="Showtime logo" class="logo" />
+    <div class="search-bar">
+      <input
+        v-model="searchQuery"
+        type="text"
+        placeholder="Search for a show..."
+        class="search-input"
+      />
+    </div>
     <div
-      v-for="(shows, genre) in showStore.showsByGenre"
+      v-for="(shows, genre) in filteredShowsByGenre"
       :key="genre"
       class="genre-section"
     >
@@ -60,6 +92,18 @@ function closeModal() {
 <style scoped>
 .logo {
   max-width: 50%;
+}
+.search-bar {
+  margin-bottom: 16px;
+  text-align: center;
+}
+.search-input {
+  width: 80%;
+  max-width: 400px;
+  padding: 8px 16px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 .genre-section {
   margin-bottom: 32px;
