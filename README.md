@@ -78,3 +78,16 @@ npm run dev
 - `npm run lint`: Lints the codebase using ESLint.
 - `npm run format`: Formats the codebase using Prettier.
 - `npm run test`: Runs unit tests using Vitest.
+
+---
+
+## Git Commit Guidelines
+
+This project follows the [Gitmoji](https://gitmoji.dev/) convention for commit messages. Gitmoji provides a standardized way to add emojis to your commit messages, making them more expressive and easier to understand.
+
+### Examples:
+- ✨ `:sparkles:` for adding new features
+- 🐛 `:bug:` for fixing bugs
+- 🎨 `:art:` for improving code structure or formatting
+- ✅ `:white_check_mark:` for adding tests
+- 📝 `:memo:` for updating documentation
