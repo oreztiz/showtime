@@ -17,6 +17,7 @@ onMounted(async () => {
   <div v-if="show" class="show-details">
     <div class="details-container">
       <img
+        v-if="show.image"
         :src="show.image.original"
         :alt="`Image of ${show.name}`"
         class="show-image"
