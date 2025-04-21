@@ -156,10 +156,11 @@ function closeModal() {
   display: block;
   width: 200px;
   height: 300px;
-  transition: border 0.2s ease-in;
+  transition:
+    border 0.2s ease-in,
+    opacity 0.2s ease-in;
   object-fit: cover;
   opacity: 0;
-  transition: opacity 0.2s ease-in;
   border-radius: 8px;
 }
 .show-card__image--loaded {
