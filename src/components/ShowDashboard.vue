@@ -83,7 +83,7 @@ function closeModal() {
         <ShowDetails />
       </div>
       <button @click="closeModal" class="modal-close">
-        &#10005;<span class="modal-close__text"> Sluiten</span>
+        &#10005;<span class="modal-close__text"> Close</span>
       </button>
     </div>
   </div>
