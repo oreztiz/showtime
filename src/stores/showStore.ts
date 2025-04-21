@@ -12,6 +12,18 @@ export const useShowStore = defineStore('showStore', {
     },
   },
   getters: {
+    showsByGenre: (state) => {
+      const grouped: Record<string, Show[]> = {};
+      state.shows.forEach((show) => {
+        show.genres.forEach((genre) => {
+          if (!grouped[genre]) {
+            grouped[genre] = [];
+          }
+          grouped[genre].push(show);
+        });
+      });
+      return grouped;
+    },
     searchShows: (state) => {
       return (query: string): Show[] => {
         return state.shows.filter((show) =>
