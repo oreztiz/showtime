@@ -18,6 +18,7 @@ const mockShowsByGenre = {
         medium:
           'https://static.tvmaze.com/uploads/images/medium_portrait/501/1253519.jpg',
       },
+      rating: { average: 9.2 },
     },
     {
       id: 82,
@@ -26,6 +27,7 @@ const mockShowsByGenre = {
         medium:
           'https://static.tvmaze.com/uploads/images/medium_portrait/498/1245274.jpg',
       },
+      rating: { average: 8.9 },
     },
   ],
   Comedy: [
@@ -36,6 +38,7 @@ const mockShowsByGenre = {
         medium:
           'https://static.tvmaze.com/uploads/images/medium_portrait/0/935.jpg',
       },
+      rating: { average: 8.4 },
     },
   ],
 };

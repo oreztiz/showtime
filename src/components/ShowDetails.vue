@@ -29,7 +29,7 @@ onMounted(async () => {
           <p><strong>Genres:</strong> {{ show.genres.join(', ') }}</p>
           <p><strong>Runtime:</strong> {{ show.runtime }} minutes</p>
           <p><strong>Premiered:</strong> {{ show.premiered }}</p>
-          <p><strong>Rating:</strong> {{ show.rating.average || 'N/A' }}</p>
+          <p><strong>Rating:</strong> ★ {{ show.rating.average || 'N/A' }}</p>
           <p v-if="show.officialSite">
             <strong>Official Site:</strong>
             <a

@@ -74,6 +74,9 @@ function closeModal() {
         >
           <div class="show-card__content">
             <h3 class="show-card__title">{{ show.name }}</h3>
+            <div v-if="show.rating.average" class="show-card__rating">
+              ★ {{ show.rating.average }}
+            </div>
             <img
               :src="show.image.medium"
               :alt="`Image of ${show.name}`"
@@ -138,6 +141,7 @@ function closeModal() {
   border-radius: 8px;
 }
 .show-card__content {
+  position: relative;
   padding: 16px;
   background: var(--brand-primary);
   transition: background 0.2s ease-in;
@@ -151,6 +155,15 @@ function closeModal() {
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: 300;
+}
+.show-card__rating {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  padding: 2px 6px;
+  background: #000;
+  border-radius: 4px;
+  font-size: 14px;
 }
 .show-card__image {
   display: block;
