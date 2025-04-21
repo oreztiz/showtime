@@ -10,7 +10,7 @@ const routes = [
   {
     path: '/show/:id',
     name: 'ShowDetails',
-    component: ShowDashboard, // Keep the dashboard as the base
+    component: ShowDashboard,
   },
 ];
 
