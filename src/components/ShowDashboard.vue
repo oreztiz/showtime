@@ -1,11 +1,19 @@
 <script setup lang="ts">
 import { useShowStore } from '../stores/showStore';
+import { useRoute, useRouter } from 'vue-router';
+import ShowDetails from './ShowDetails.vue';
 
 const showStore = useShowStore();
+const route = useRoute();
+const router = useRouter();
 
 function handleImageLoad(event: Event) {
   const target = event.target as HTMLImageElement;
-  target.closest('.show-card')?.classList.add('show-card--loaded');
+  target.classList.add('show-card__image--loaded');
+}
+
+function closeModal() {
+  router.push('/');
 }
 </script>
 
@@ -38,6 +46,14 @@ function handleImageLoad(event: Event) {
         </router-link>
       </div>
     </div>
+    <div v-if="route.name === 'ShowDetails'" class="modal-overlay">
+      <div class="modal-content">
+        <ShowDetails />
+      </div>
+      <button @click="closeModal" class="modal-close">
+        &#10005;<span class="modal-close__text"> Sluiten</span>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -68,8 +84,7 @@ function handleImageLoad(event: Event) {
   display: block;
   scroll-snap-align: center;
   background: var(--brand-gradient);
-  opacity: 0;
-  transition: opacity 0.2s ease-in;
+  border-radius: 8px;
 }
 .show-card__content {
   padding: 16px;
@@ -92,9 +107,46 @@ function handleImageLoad(event: Event) {
   height: 300px;
   transition: border 0.2s ease-in;
   object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+  border-radius: 8px;
 }
-.show-card--loaded {
+.show-card__image--loaded {
   opacity: 1;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  border: none;
+  background: none;
+  font-family: var(--font-family);
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+}
+.modal-content {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  bottom: 24px;
+  left: 24px;
+  overflow-y: auto;
+}
+.modal-close__text {
+  display: none;
 }
 @media (min-width: 480px) {
   .show-list {
@@ -106,6 +158,11 @@ function handleImageLoad(event: Event) {
   .show-card__image {
     width: 320px;
     height: 480px;
+  }
+}
+@media (min-width: 1037px) {
+  .modal-close__text {
+    display: inline;
   }
 }
 </style>

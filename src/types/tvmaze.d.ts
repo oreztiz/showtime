@@ -3,11 +3,14 @@ export interface Show {
   name: string;
   genres: string[];
   rating: {
-    average: number;
+    average: number | null;
   };
   image: {
     medium: string;
     original: string;
   };
   summary: string;
+  runtime: number;
+  premiered: string;
+  officialSite: string | null;
 }

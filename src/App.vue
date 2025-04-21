@@ -1,10 +1,8 @@
-<script setup lang="ts">
-import ShowDashboard from './components/ShowDashboard.vue';
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="app-container">
-    <ShowDashboard />
+    <router-view />
   </div>
 </template>
 
